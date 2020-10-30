@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BuySellCarr</title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .container{
+            display: flex;
+            flex-direction: column;
+            max-width: 1000px;
+            margin: auto;
+        }
+        header{
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+        }
+        #name{
+            font-size: 40px;
+        }
+        ul{
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            
+            align-items: center;
+        }
+        li{
+            width: 200px;
+            display: flex;
+            flex-direction: column;
+            
+        }
+        input{
+            height: 30px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            border: 1px solid black;
+        }
+        label{
+            font-weight: 400;
+            font-size: 18px;
+        }
+        button{
+            height: 40px;
+            border-radius: 5px;
+            margin-top: 20px;
+            color: white;
+            background-color: rgb(72, 141, 72);
+            border: none;
+        }
+        th{
+            border: 1px solid black;
+        }
+        img{
+            max-width: 200px;
+            max-height: 1600px;
+        }
+        #table-car{
+            border: 1px solid black;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="company-info">
+            <h2 id="name">Buy</h2>
+            <h3 id="contact">(12) 99999-0022 </h3>
+        </header>
+        <form action="" class="form">
+            <ul>
+                <li>
+                    <label for="image">Imagem:</label>
+                    <input type="url" id="image">
+                </li>
+                <li>
+                    <label for="model">Montadora / Modelo:</label>
+                    <input type="text" id="model">
+                </li>
+                <li>
+                    <label for="year">Ano:</label>
+                    <input type="text" id="year">
+                </li>
+                <li>
+                    <label for="license">Placa:</label>
+                    <input type="text" id="license">
+                </li>
+                <li>
+                    <label for="color">Cor:</label>
+                    <input type="text" id="color">
+                </li>
+                <li>
+                    <button type="submit">Cadastrar</button>
+                </li>
+            </ul>
+        </form>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Imagem do carro</th>
+                    <th>Montadora / Modelo</th>
+                    <th>Ano</th>
+                    <th>Placa</th>
+                    <th>Cor</th>
+                    <th>Excluir</th>
+                </tr>
+            </thead>
+            <tbody id="table-car">
+
+            </tbody>
+        </table>
+    </div>
+    
+    <script src="dom.js"></script>
+    <script src="30-javascript-luiz-teixeira.js"></script>
+</body>
+</html>
