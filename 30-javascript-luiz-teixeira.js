@@ -4,38 +4,55 @@
   const app = (() => {
     return {
       init: function () {
-        this.companyInfo()
+        this.handleRequest()
         this.initEvents()
       },
       initEvents: function () {
-        const $form = $('[class="form"]')
-        $form.on('submit', this.handleSubmit)
+        const $form = document.querySelector('.form')
+        $form.addEventListener('submit', this.handleSubmit)
       },
-      handleSubmit: function handleSubmit(e) {
+      handleSubmit: function (e) {
         e.preventDefault()
-        const $tableCar = $('[id=table-car]').get()
+        const $tableCar = document.querySelector('#table-car')
         $tableCar.appendChild(app.createNewCar())
       },
+
       createNewCar: function () {
         const $fragment = document.createDocumentFragment()
 
-        let $tr = this.create('tr')
-        const $image = this.create('img')
-        let $tdImage = this.create()
-        const $tdModel = this.create()
-        const $tdYear = this.create()
-        const $tdLicense = this.create()
-        const $tdColor = this.create()
+        const $image = document.createElement('img')
+        const $tdModel = document.createElement('td')
+        const $tdYear = document.createElement('td')
+        const $tdLicense = document.createElement('td')
+        const $tdColor = document.createElement('td')
+        let $tr = document.createElement('tr')
+        let $tdImage = document.createElement('td')
+        let $delete = document.createElement('button')
 
-        $image.setAttribute('src', $('[id="image"]').get().value)
-        $tdImage.appendChild($image)
+        $image.src = document.querySelector('#image').value
+        $tdModel.textContent = document.querySelector('#model').value
+        $tdYear.textContent = document.querySelector('#year').value
+        $tdLicense.textContent = document.querySelector('#license').value
+        $tdColor.textContent = document.querySelector('#color').value
 
-        $tdModel.textContent = $('[id="model"]').get().value
-        $tdYear.textContent = $('[id="year"]').get().value
-        $tdLicense.textContent = $('[id="license"]').get().value
-        $tdColor.textContent = $('[id="color"]').get().value
+        //button delete funcionalities
+        $delete.innerHTML = 'excluir'
+        $delete.addEventListener('click', (e) => {
+          let elementsLine = e.target.parentNode
+          e.preventDefault()
+          elementsLine.parentElement.removeChild(elementsLine)
+        })
 
-        const args = [$tdImage, $tdModel, $tdYear, $tdLicense, $tdColor]
+        const args = [
+          $tdImage,
+          $tdModel,
+          $tdYear,
+          $tdLicense,
+          $tdColor,
+          $delete,
+        ]
+
+        $tdImage.append($image)
         $tr.append(...args)
 
         return $fragment.appendChild($tr)
@@ -43,12 +60,7 @@
       append: function (element) {
         return appendChild(element)
       },
-      create: function (type) {
-        return !type
-          ? document.createElement('td')
-          : document.createElement(type)
-      },
-      companyInfo: function () {
+      handleRequest: function () {
         fetch('./company.json').then((res) => {
           res.json().then((data) => {
             const $companyName = $('[id=name]').get()
@@ -59,8 +71,6 @@
           })
         })
       },
-
-      createComponents: function () {},
     }
   })()
 
